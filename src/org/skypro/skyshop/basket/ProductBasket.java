@@ -13,14 +13,14 @@ public class ProductBasket {
                 return;
             }
         }
-        System.out.println("Невозможно добавить продукт.");
+        System.out.println("Невозможно добавить продукт. Корзина переполнена.");
     }
 
     public int totalPrice() {
         int summ = 0;
         for (Product product : products) {
             if (product != null) {
-                summ = summ + product.getPriceProduct();
+                summ = summ + product.getPrice();
             }
         }
         return summ;
@@ -37,7 +37,7 @@ public class ProductBasket {
 
     public boolean checkBasket(String name) {
         for (Product product : products) {
-            if (product != null && product.getNameProduct().equals(name)) {
+            if (product != null && product.getName().equals(name)) {
                 System.out.println("Такой продукт уже лежит в корзине");
                 return true;
             }
