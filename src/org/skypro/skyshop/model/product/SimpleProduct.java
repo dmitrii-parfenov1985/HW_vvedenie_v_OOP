@@ -1,4 +1,4 @@
-package org.skypro.skyshop.product;
+package org.skypro.skyshop.model.product;
 
 public class SimpleProduct extends Product {
 
@@ -12,6 +12,11 @@ public class SimpleProduct extends Product {
     @Override
     public int getPrice() {
         return price;
+    }
+
+    @Override
+    public boolean isSpecial() {
+        return false;
     }
 
     @Override
