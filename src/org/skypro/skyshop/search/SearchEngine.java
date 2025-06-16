@@ -1,7 +1,5 @@
 package org.skypro.skyshop.search;
 
-import org.skypro.skyshop.model.product.Product;
-
 public class SearchEngine {
 
     private Searchable[] searchables = new Searchable[10];

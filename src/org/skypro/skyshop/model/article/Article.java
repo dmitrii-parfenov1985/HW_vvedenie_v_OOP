@@ -1,6 +1,5 @@
 package org.skypro.skyshop.model.article;
 
-
 import org.skypro.skyshop.search.Searchable;
 
 public final class Article implements Searchable {
@@ -38,6 +37,6 @@ public final class Article implements Searchable {
 
     @Override
     public String getName() {
-        return "Строка - Имя продукта";
+        return title;
     }
 }
