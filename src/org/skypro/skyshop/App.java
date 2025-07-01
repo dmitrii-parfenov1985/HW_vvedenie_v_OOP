@@ -14,26 +14,27 @@ public class App {
 
     public static void main(String[] args) {
 
-        SimpleProduct product1 = new SimpleProduct("апельсин", 15);
-        SimpleProduct product3 = new SimpleProduct("банан", 20);
-        SimpleProduct product4 = new SimpleProduct("яблоко", 30);
+        SimpleProduct simpleProduct1 = new SimpleProduct("апельсин", 15);
+        SimpleProduct simpleProduct2 = new SimpleProduct("банан", 20);
+        SimpleProduct simpleProduct3 = new SimpleProduct("яблоко", 30);
+        SimpleProduct simpleProduct4 = new SimpleProduct("лимон", 40);
 
-        DiscountedProduct product10 = new DiscountedProduct("молоко", 90, 90*10/100);
+        DiscountedProduct discountedProduct1 = new DiscountedProduct("молоко", 90, 90*10/100);
 
-        FixPriceProduct product11 = new FixPriceProduct("джинсы");
+        FixPriceProduct fixPriceProduct1 = new FixPriceProduct("джинсы");
 
         ProductBasket basket = new ProductBasket();
 
 
 
-        basket.addProduct(product1);
-        basket.addProduct(product3);
-        basket.addProduct(product4);
-        basket.addProduct(product10);
-        basket.addProduct(product11);
+        basket.addProduct(simpleProduct1);
+        basket.addProduct(simpleProduct2);
+        basket.addProduct(simpleProduct3);
+        basket.addProduct(discountedProduct1);
+        basket.addProduct(simpleProduct4);
 
-        product10.isSpecial();
-        product3.isSpecial();
+        discountedProduct1.isSpecial();
+        simpleProduct3.isSpecial();
 
 
         System.out.println(basket.totalPrice());
@@ -48,18 +49,18 @@ public class App {
         System.out.println(article1.getContentType());
         System.out.println(article1.getName());
         System.out.println(article2.getSearchTerm());
-        System.out.println(product3.getSearchTerm());
-        System.out.println(product1.getSearchTerm());
-        System.out.println(product4.getName());
+        System.out.println(simpleProduct3.getSearchTerm());
+        System.out.println(simpleProduct1.getSearchTerm());
+        System.out.println(simpleProduct4.getName());
         System.out.println(article1);
 
         SearchEngine searchEngine = new SearchEngine();
 
-        searchEngine.add(product1);
-        searchEngine.add(product3);
-        searchEngine.add(product4);
-        searchEngine.add(product10);
-        searchEngine.add(product11);
+        searchEngine.add(simpleProduct1);
+        searchEngine.add(simpleProduct3);
+        searchEngine.add(simpleProduct4);
+        searchEngine.add(discountedProduct1);
+        searchEngine.add(fixPriceProduct1);
         searchEngine.add(article1);
         searchEngine.add(article2);
 
@@ -80,5 +81,17 @@ public class App {
                 System.out.println(searchable);
             }
         }
+        SimpleProduct simpleProduct22 = new SimpleProduct("лук", 30);
+        SimpleProduct simpleProduct33 = new SimpleProduct("морковь", 50);
+
+        DiscountedProduct discountedProduct2 = new DiscountedProduct("хлеб", 100, 80 * 10 / 100);
+        try {
+            searchEngine.add(discountedProduct2);
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
+
+        System.out.println(simpleProduct22);
+        System.out.println(simpleProduct33);
     }
 }
