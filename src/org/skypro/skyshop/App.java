@@ -5,6 +5,7 @@ import org.skypro.skyshop.model.article.Article;
 import org.skypro.skyshop.model.product.DiscountedProduct;
 import org.skypro.skyshop.model.product.FixPriceProduct;
 import org.skypro.skyshop.model.product.SimpleProduct;
+import org.skypro.skyshop.search.BestResultNotFound;
 import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.search.Searchable;
 
@@ -13,6 +14,9 @@ import java.util.Arrays;
 public class App {
 
     public static void main(String[] args) {
+
+
+        SimpleProduct grape = new SimpleProduct("виноград", 35);
 
         SimpleProduct product1 = new SimpleProduct("апельсин", 15);
         SimpleProduct product3 = new SimpleProduct("банан", 20);
@@ -23,9 +27,7 @@ public class App {
         FixPriceProduct product11 = new FixPriceProduct("джинсы");
 
         ProductBasket basket = new ProductBasket();
-
-
-
+        basket.addProduct(grape);
         basket.addProduct(product1);
         basket.addProduct(product3);
         basket.addProduct(product4);
@@ -39,7 +41,7 @@ public class App {
         System.out.println(basket.totalPrice());
         basket.printBasket();
         basket.checkBasket("апельсин");
-        basket.deleteBasket();
+
 
         Article article1 = new Article("Статья о пользе апельсинов.", " В апельсинах много витамина С");
         Article article2 = new Article("Название статьи: Молоко вредно для взрослых людей!", " Нельзя пить молоко!");
@@ -54,6 +56,12 @@ public class App {
         System.out.println(article1);
 
         SearchEngine searchEngine = new SearchEngine();
+
+        try {
+            searchEngine.findBestMatch("апельсин");
+        } catch (BestResultNotFound e) {
+            throw new RuntimeException(e);
+        }
 
         searchEngine.add(product1);
         searchEngine.add(product3);

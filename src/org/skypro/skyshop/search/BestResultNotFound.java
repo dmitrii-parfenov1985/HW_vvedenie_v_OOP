@@ -9,4 +9,10 @@ public class BestResultNotFound extends Exception {
         this.search = search;
     }
 
+    @Override
+    public String toString() {
+        return "BestResultNotFound{" +
+                "search='" + search + '\'' +
+                '}';
+    }
 }
