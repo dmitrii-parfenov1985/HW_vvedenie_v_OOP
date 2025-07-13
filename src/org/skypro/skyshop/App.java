@@ -18,24 +18,24 @@ public class App {
 
         SimpleProduct grape = new SimpleProduct("виноград", 35);
 
-        SimpleProduct product1 = new SimpleProduct("апельсин", 15);
-        SimpleProduct product3 = new SimpleProduct("банан", 20);
-        SimpleProduct product4 = new SimpleProduct("яблоко", 30);
+        SimpleProduct orange = new SimpleProduct("апельсин", 15);
+        SimpleProduct banana = new SimpleProduct("банан", 20);
+        SimpleProduct apple = new SimpleProduct("яблоко", 30);
 
-        DiscountedProduct product10 = new DiscountedProduct("молоко", 90, 90*10/100);
+        DiscountedProduct milk = new DiscountedProduct("молоко", 90, 90 * 10 / 100);
 
-        FixPriceProduct product11 = new FixPriceProduct("джинсы");
+        FixPriceProduct jeans = new FixPriceProduct("джинсы");
 
         ProductBasket basket = new ProductBasket();
         basket.addProduct(grape);
-        basket.addProduct(product1);
-        basket.addProduct(product3);
-        basket.addProduct(product4);
-        basket.addProduct(product10);
-        basket.addProduct(product11);
+        basket.addProduct(orange);
+        basket.addProduct(banana);
+        basket.addProduct(apple);
+        basket.addProduct(milk);
+        basket.addProduct(jeans);
 
-        product10.isSpecial();
-        product3.isSpecial();
+        milk.isSpecial();
+        banana.isSpecial();
 
 
         System.out.println(basket.totalPrice());
@@ -43,33 +43,28 @@ public class App {
         basket.checkBasket("апельсин");
 
 
-        Article article1 = new Article("Статья о пользе апельсинов.", " В апельсинах много витамина С");
-        Article article2 = new Article("Название статьи: Молоко вредно для взрослых людей!", " Нельзя пить молоко!");
+        Article articleAboutOrange = new Article("Статья о пользе апельсинов.", " В апельсинах много витамина С");
+        Article articleAboutMilk = new Article("Название статьи: Молоко вредно для взрослых людей!", "Нельзя пить молоко!");
 
-        System.out.println(article1.getSearchTerm());
-        System.out.println(article1.getContentType());
-        System.out.println(article1.getName());
-        System.out.println(article2.getSearchTerm());
-        System.out.println(product3.getSearchTerm());
-        System.out.println(product1.getSearchTerm());
-        System.out.println(product4.getName());
-        System.out.println(article1);
+        System.out.println(articleAboutOrange.getSearchTerm());
+        System.out.println(articleAboutOrange.getContentType());
+        System.out.println(articleAboutOrange.getName());
+        System.out.println(articleAboutMilk.getSearchTerm());
+        System.out.println(banana.getSearchTerm());
+        System.out.println(orange.getSearchTerm());
+        System.out.println(apple.getName());
+        System.out.println(articleAboutOrange);
 
         SearchEngine searchEngine = new SearchEngine();
 
-        try {
-            searchEngine.findBestMatch("апельсин");
-        } catch (BestResultNotFound e) {
-            throw new RuntimeException(e);
-        }
 
-        searchEngine.add(product1);
-        searchEngine.add(product3);
-        searchEngine.add(product4);
-        searchEngine.add(product10);
-        searchEngine.add(product11);
-        searchEngine.add(article1);
-        searchEngine.add(article2);
+        searchEngine.add(orange);
+        searchEngine.add(banana);
+        searchEngine.add(apple);
+        searchEngine.add(milk);
+        searchEngine.add(jeans);
+        searchEngine.add(articleAboutOrange);
+        searchEngine.add(articleAboutMilk);
 
         for (Searchable searchable : searchEngine.search("апельсин")) {
             if (searchable != null) {
@@ -87,6 +82,12 @@ public class App {
             if (searchable != null) {
                 System.out.println(searchable);
             }
+        }
+
+        try {
+            searchEngine.findBestMatch("апельсин");
+        } catch (BestResultNotFound e) {
+            throw new RuntimeException(e);
         }
     }
 }
