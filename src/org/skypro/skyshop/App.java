@@ -16,7 +16,9 @@ public class App {
     public static void main(String[] args) {
 
 
-        SimpleProduct grape = new SimpleProduct("виноград", 35);
+        SimpleProduct grape = new SimpleProduct(" ", 35);
+
+
 
         SimpleProduct orange = new SimpleProduct("апельсин", 15);
         SimpleProduct banana = new SimpleProduct("банан", 20);
@@ -85,7 +87,7 @@ public class App {
         }
 
         try {
-            searchEngine.findBestMatch("апельсин");
+            searchEngine.findBestMatch("сочный");
         } catch (BestResultNotFound e) {
             throw new RuntimeException(e);
         }
