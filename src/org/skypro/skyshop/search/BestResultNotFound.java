@@ -11,8 +11,6 @@ public class BestResultNotFound extends Exception {
 
     @Override
     public String toString() {
-        return "BestResultNotFound{" +
-                "search='" + search + '\'' +
-                '}';
+        return "Для продукта " + search + " не нашлось подходящей статьи";
     }
 }

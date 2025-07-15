@@ -9,7 +9,14 @@ public class DiscountedProduct extends Product {
         super(name);
         this.basePrice = basePrice;
         this.discount = discount;
+        if (basePrice <= 0) {
+            throw new IllegalArgumentException("Цена не может быть ноль или отрицательной!");
+        }
+        if (discount < 0 || discount > 100) {
+            throw new IllegalArgumentException("Скидка не может быть более 100% и менее 0");
+        }
     }
+
 
     @Override
     public int getPrice() {

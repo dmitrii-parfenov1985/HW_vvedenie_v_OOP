@@ -17,33 +17,37 @@ public class App {
 
 
         SimpleProduct grape = new SimpleProduct("виноград", 35);
-
-        SimpleProduct orange = new SimpleProduct("апельсин", 15);
-        SimpleProduct banana = new SimpleProduct("банан", 20);
+        SimpleProduct orange = new SimpleProduct( "апельсин", 15);
+        SimpleProduct banana = new SimpleProduct("банан сочный", 20);
         SimpleProduct apple = new SimpleProduct("яблоко", 30);
 
         DiscountedProduct milk = new DiscountedProduct("молоко", 90, 90 * 10 / 100);
 
+
+
         FixPriceProduct jeans = new FixPriceProduct("джинсы");
+        FixPriceProduct trousers = new FixPriceProduct("брюки");
 
         ProductBasket basket = new ProductBasket();
+
         basket.addProduct(grape);
         basket.addProduct(orange);
         basket.addProduct(banana);
         basket.addProduct(apple);
         basket.addProduct(milk);
         basket.addProduct(jeans);
+        basket.addProduct(trousers);
 
         milk.isSpecial();
         banana.isSpecial();
 
-
         System.out.println(basket.totalPrice());
+        System.out.println("__________________");
         basket.printBasket();
+        System.out.println("__________________");
         basket.checkBasket("апельсин");
 
-
-        Article articleAboutOrange = new Article("Статья о пользе апельсинов.", " В апельсинах много витамина С");
+        Article articleAboutOrange = new Article("Статья о пользе апельсинов.", "В апельсинах много витамина С");
         Article articleAboutMilk = new Article("Название статьи: Молоко вредно для взрослых людей!", "Нельзя пить молоко!");
 
         System.out.println(articleAboutOrange.getSearchTerm());
@@ -57,6 +61,11 @@ public class App {
 
         SearchEngine searchEngine = new SearchEngine();
 
+        try {
+            searchEngine.findBestMatch("молоко");
+        } catch (BestResultNotFound e) {
+            System.out.println(e);
+        }
 
         searchEngine.add(orange);
         searchEngine.add(banana);
@@ -65,6 +74,12 @@ public class App {
         searchEngine.add(jeans);
         searchEngine.add(articleAboutOrange);
         searchEngine.add(articleAboutMilk);
+
+        try {
+            searchEngine.findBestMatch("молоко");
+        } catch (BestResultNotFound e) {
+            throw new RuntimeException(e);
+        }
 
         for (Searchable searchable : searchEngine.search("апельсин")) {
             if (searchable != null) {
@@ -84,8 +99,11 @@ public class App {
             }
         }
 
+
+        SearchEngine searchEngine1 = new SearchEngine();
+
         try {
-            searchEngine.findBestMatch("апельсин");
+            searchEngine1.findBestMatch("сочный яблоко молоко");
         } catch (BestResultNotFound e) {
             throw new RuntimeException(e);
         }

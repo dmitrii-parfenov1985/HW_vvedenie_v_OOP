@@ -4,7 +4,7 @@ import org.skypro.skyshop.model.product.Product;
 
 public class ProductBasket {
 
-    private  Product[] products = new Product[5];
+    private Product[] products = new Product[5];
 
     public void addProduct(Product product) {
         for (int i = 0; i < products.length; i++) {
