@@ -10,16 +10,20 @@ import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.search.Searchable;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class App {
 
     public static void main(String[] args) {
 
 
+
+
         SimpleProduct grape = new SimpleProduct("виноград", 35);
         SimpleProduct orange = new SimpleProduct( "апельсин", 15);
         SimpleProduct banana = new SimpleProduct("банан сочный", 20);
         SimpleProduct apple = new SimpleProduct("яблоко", 30);
+
 
         DiscountedProduct milk = new DiscountedProduct("молоко", 90, 90 * 10 / 100);
 
@@ -29,6 +33,7 @@ public class App {
         FixPriceProduct trousers = new FixPriceProduct("брюки");
 
         ProductBasket basket = new ProductBasket();
+
 
         basket.addProduct(grape);
         basket.addProduct(orange);
@@ -74,6 +79,12 @@ public class App {
         searchEngine.add(jeans);
         searchEngine.add(articleAboutOrange);
         searchEngine.add(articleAboutMilk);
+        System.out.println("-------");
+        List<Searchable> orangeSearchResult = searchEngine.search("апельсин");
+        System.out.println(orangeSearchResult);
+        System.out.println("-------");
+
+        searchEngine.delete("молоко");
 
         try {
             searchEngine.findBestMatch("молоко");
@@ -107,5 +118,7 @@ public class App {
         } catch (BestResultNotFound e) {
             throw new RuntimeException(e);
         }
+
+
     }
 }

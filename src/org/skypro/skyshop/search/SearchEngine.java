@@ -1,44 +1,41 @@
 package org.skypro.skyshop.search;
 
-import org.skypro.skyshop.model.product.Product;
+import java.util.*;
 
 
 public class SearchEngine {
 
-    private Searchable[] searchables = new Searchable[10];
+    private final List<Searchable> searchables = new LinkedList<>();
 
     public SearchEngine() {
-        this.searchables = searchables;
     }
 
-    public Searchable[] getSearchables() {
+    public List<Searchable> getSearchables() {
         return searchables;
     }
 
 
     public void add(Searchable searchable) {
-        for (int i = 0; i < searchables.length; i++) {
-            if (searchables[i] == null) {
-                searchables[i] = searchable;
-                return;
-            }
-        }
+        searchables.add(searchable);
     }
 
-    public Searchable[] search(String search) {
-        Searchable[] result = new Searchable[5];
-        int count = 0;
-
+    public List<Searchable> search(String search) {
+        List<Searchable> result = new ArrayList<>();
         for (Searchable searchable : searchables) {
-            if (count >= 5) {
-                break;
-            }
             if (searchable != null && searchable.getSearchTerm().contains(search)) {
-                result[count] = searchable;
-                count++;
+                result.add(searchable);
             }
         }
         return result;
+    }
+
+    public List<Searchable> delete(String search) {
+        Iterator<Searchable> iterator = searchables.iterator();
+        while (iterator.hasNext()) {
+            Searchable element = iterator.next();
+            System.out.println(element);
+        }
+        return List.of();
     }
 
     public Searchable findBestMatch(String search) throws BestResultNotFound {
