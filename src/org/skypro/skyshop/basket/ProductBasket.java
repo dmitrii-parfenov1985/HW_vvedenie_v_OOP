@@ -1,26 +1,29 @@
 package org.skypro.skyshop.basket;
 
-import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.model.product.Product;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
 
 public class ProductBasket {
 
-    private final Product[] products = new Product[5];
+    private List<Product> products = new LinkedList<>();
 
     public void addProduct(Product product) {
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] == null) {
-                products[i] = product;
+        for (int i = 0; products.size() > i; i++) {
+            if (products.get(i) == null) {
+                products.set(i, product);
                 return;
             }
         }
-        System.out.println("Невозможно добавить продукт.");
     }
 
     public int totalPrice() {
         int summ = 0;
         for (Product product : products) {
             if (product != null) {
-                summ = summ + product.getPriceProduct();
+                summ = summ + product.getPrice();
             }
         }
         return summ;
@@ -37,7 +40,7 @@ public class ProductBasket {
 
     public boolean checkBasket(String name) {
         for (Product product : products) {
-            if (product != null && product.getNameProduct().equals(name)) {
+            if (product != null && product.getName().equals(name)) {
                 System.out.println("Такой продукт уже лежит в корзине");
                 return true;
             }
@@ -46,8 +49,9 @@ public class ProductBasket {
     }
 
     public void deleteBasket() {
-        for (Product product : products) {
-            product = null;
+        for (int i = 0; i < Objects.requireNonNull(products).size(); i++) {
+            System.out.println(i);
+            products = null;
         }
     }
 }
