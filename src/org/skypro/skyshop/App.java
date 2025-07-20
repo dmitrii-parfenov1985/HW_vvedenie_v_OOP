@@ -9,7 +9,7 @@ import org.skypro.skyshop.search.BestResultNotFound;
 import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.search.Searchable;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class App {
 
@@ -17,12 +17,13 @@ public class App {
 
 
         SimpleProduct grape = new SimpleProduct("виноград", 35);
-        SimpleProduct orange = new SimpleProduct( "апельсин", 15);
+        SimpleProduct orange = new SimpleProduct("апельсин", 15);
         SimpleProduct banana = new SimpleProduct("банан сочный", 20);
         SimpleProduct apple = new SimpleProduct("яблоко", 30);
 
-        DiscountedProduct milk = new DiscountedProduct("молоко", 90, 90 * 10 / 100);
 
+
+        DiscountedProduct milk = new DiscountedProduct("молоко", 90, 90 * 10 / 100);
 
 
         FixPriceProduct jeans = new FixPriceProduct("джинсы");
@@ -43,9 +44,8 @@ public class App {
 
         System.out.println(basket.totalPrice());
         System.out.println("__________________");
-        basket.printBasket();
+        System.out.println(basket.printBasket());
         System.out.println("__________________");
-        basket.checkBasket("апельсин");
 
         Article articleAboutOrange = new Article("Статья о пользе апельсинов.", "В апельсинах много витамина С");
         Article articleAboutMilk = new Article("Название статьи: Молоко вредно для взрослых людей!", "Нельзя пить молоко!");
@@ -60,6 +60,7 @@ public class App {
         System.out.println(articleAboutOrange);
 
         SearchEngine searchEngine = new SearchEngine();
+        System.out.println("-------------");
 
         try {
             searchEngine.findBestMatch("молоко");
@@ -74,6 +75,16 @@ public class App {
         searchEngine.add(jeans);
         searchEngine.add(articleAboutOrange);
         searchEngine.add(articleAboutMilk);
+        System.out.println("-------");
+        List<Searchable> orangeSearchResult = searchEngine.search("апельсин");
+        System.out.println(orangeSearchResult);
+        System.out.println("-------");
+        System.out.println(searchEngine.delete("апельсин"));
+
+        System.out.println(searchEngine.delete("молоко"));
+        System.out.println(searchEngine.delete("брюки"));
+        System.out.println(searchEngine.getSearchables());
+        System.out.println("--------");
 
         try {
             searchEngine.findBestMatch("молоко");

@@ -2,40 +2,55 @@ package org.skypro.skyshop.search;
 
 import org.skypro.skyshop.model.product.Product;
 
+import java.util.*;
+
 
 public class SearchEngine {
 
-    private Searchable[] searchables = new Searchable[10];
+    private final List<Searchable> searchables = new LinkedList<>();
 
     public SearchEngine() {
-        this.searchables = searchables;
     }
 
-    public Searchable[] getSearchables() {
+    public List<Searchable> getSearchables() {
         return searchables;
     }
 
 
     public void add(Searchable searchable) {
-        for (int i = 0; i < searchables.length; i++) {
-            if (searchables[i] == null) {
-                searchables[i] = searchable;
-                return;
-            }
-        }
+        searchables.add(searchable);
     }
 
-    public Searchable[] search(String search) {
-        Searchable[] result = new Searchable[5];
-        int count = 0;
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof SearchEngine)) return false;
+        SearchEngine that = (SearchEngine) o;
+        return Objects.equals(searchables, that.searchables);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(searchables);
+    }
+
+    public Map<String, Searchable> search(String search) {
+        Map<String, Searchable> result = new TreeMap<>();
         for (Searchable searchable : searchables) {
-            if (count >= 5) {
-                break;
-            }
             if (searchable != null && searchable.getSearchTerm().contains(search)) {
-                result[count] = searchable;
-                count++;
+                result.put(searchable.getName(), searchable);
+            }
+        }
+        return result;
+    }
+
+    public List<Searchable> delete(String search) {
+        Iterator<Searchable> iterator = searchables.iterator();
+        List<Searchable> result = new ArrayList<>();
+        while (iterator.hasNext()) {
+            Searchable element = iterator.next();
+            if (element != null && element.getSearchTerm().contains(search)){
+                iterator.remove();
+                result.add(element);
             }
         }
         return result;
@@ -72,3 +87,4 @@ public class SearchEngine {
         return count;
     }
 }
+
