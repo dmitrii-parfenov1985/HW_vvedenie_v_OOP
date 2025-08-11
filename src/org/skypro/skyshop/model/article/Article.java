@@ -4,6 +4,7 @@ import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.search.Searchable;
 
 import java.util.Objects;
+import java.util.Set;
 
 public final class Article implements Searchable {
 
