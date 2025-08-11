@@ -1,11 +1,9 @@
 package org.skypro.skyshop.search;
 
-import org.skypro.skyshop.model.product.Product;
-
 import java.util.*;
 
 
-public class SearchEngine {
+public class SearchEngine implements Comparator {
 
     private final Set<Searchable> searchables = new HashSet<>();
 
@@ -16,9 +14,18 @@ public class SearchEngine {
         return searchables;
     }
 
+    @Override
+    public Comparator reversed() {
+        return Comparator.super.reversed();
+    }
 
     public void add(Searchable searchable) {
         searchables.add(searchable);
+    }
+
+    @Override
+    public int compare(Object o1, Object o2) {
+        return 0;
     }
 
     @Override
@@ -33,11 +40,11 @@ public class SearchEngine {
         return Objects.hashCode(searchables);
     }
 
-    public Set<String> search(String search) {
-        TreeSet<String> result = new TreeSet<>();
+    public TreeSet<Searchable> search(String search) {
+        TreeSet<Searchable> result = new TreeSet<>(new MyComparator());
         for (Searchable searchable : searchables) {
             if (searchable != null && searchable.getSearchTerm().contains(search)) {
-                result.add(searchable.getName());
+                result.add(searchable);
             }
         }
         return result;
