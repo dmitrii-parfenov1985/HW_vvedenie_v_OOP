@@ -7,12 +7,12 @@ import java.util.*;
 
 public class SearchEngine {
 
-    private final List<Searchable> searchables = new LinkedList<>();
+    private final Set<Searchable> searchables = new HashSet<>();
 
     public SearchEngine() {
     }
 
-    public List<Searchable> getSearchables() {
+    public Set<Searchable> getSearchables() {
         return searchables;
     }
 
@@ -33,11 +33,11 @@ public class SearchEngine {
         return Objects.hashCode(searchables);
     }
 
-    public Map<String, Searchable> search(String search) {
-        Map<String, Searchable> result = new TreeMap<>();
+    public Set<String> search(String search) {
+        TreeSet<String> result = new TreeSet<>();
         for (Searchable searchable : searchables) {
             if (searchable != null && searchable.getSearchTerm().contains(search)) {
-                result.put(searchable.getName(), searchable);
+                result.add(searchable.getName());
             }
         }
         return result;

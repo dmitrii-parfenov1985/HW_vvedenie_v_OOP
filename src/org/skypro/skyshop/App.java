@@ -1,15 +1,19 @@
 package org.skypro.skyshop;
 
+import com.sun.source.doctree.SeeTree;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.model.article.Article;
 import org.skypro.skyshop.model.product.DiscountedProduct;
 import org.skypro.skyshop.model.product.FixPriceProduct;
+import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.product.SimpleProduct;
 import org.skypro.skyshop.search.BestResultNotFound;
 import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.search.Searchable;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class App {
 
@@ -20,6 +24,7 @@ public class App {
         SimpleProduct orange = new SimpleProduct("апельсин", 15);
         SimpleProduct banana = new SimpleProduct("банан сочный", 20);
         SimpleProduct apple = new SimpleProduct("яблоко", 30);
+        SimpleProduct orange2 = new SimpleProduct("апельсин", 15);
 
 
 
@@ -76,7 +81,7 @@ public class App {
         searchEngine.add(articleAboutOrange);
         searchEngine.add(articleAboutMilk);
         System.out.println("-------");
-        List<Searchable> orangeSearchResult = searchEngine.search("апельсин");
+        Set<String> orangeSearchResult = searchEngine.search("апельсин");
         System.out.println(orangeSearchResult);
         System.out.println("-------");
         System.out.println(searchEngine.delete("апельсин"));
@@ -92,23 +97,23 @@ public class App {
             throw new RuntimeException(e);
         }
 
-        for (Searchable searchable : searchEngine.search("апельсин")) {
+        /*for (Map.Entry<String, Searchable> searchable: searchEngine.search("апельсин").equals()) {
             if (searchable != null) {
                 System.out.println(searchable);
             }
         }
 
-        for (Searchable searchable : searchEngine.search("молоко")) {
+        for (Map.Entry<String, Searchable> searchable : searchEngine.search("молоко").equals()) {
             if (searchable != null) {
                 System.out.println(searchable);
             }
         }
 
-        for (Searchable searchable : searchEngine.search("рубашка")) {
+        for (Object searchable: searchEngine.search("рубашка").equals()) {
             if (searchable != null) {
                 System.out.println(searchable);
             }
-        }
+        }*/
 
 
         SearchEngine searchEngine1 = new SearchEngine();
