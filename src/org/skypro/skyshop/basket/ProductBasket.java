@@ -2,7 +2,10 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.model.product.Product;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ProductBasket {
 
@@ -45,14 +48,3 @@ public class ProductBasket {
         return false;
     }
 }
-
-
-
-
-//
-//        public void deleteBasket () {
-//            for (int i = 0; i < Objects.requireNonNull(products).size(); i++) {
-//                System.out.println(i);
-//                products = null;
-//            }
-//        }

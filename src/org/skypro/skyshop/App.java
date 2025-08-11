@@ -95,14 +95,13 @@ public class App {
         System.out.println("compare " + searchEngine.compare(apple, milk));
 
 
-
         try {
             searchEngine.findBestMatch("молоко");
         } catch (BestResultNotFound e) {
             throw new RuntimeException(e);
         }
 
-        for (Searchable searchable: searchEngine.search("апельсин")) {
+        for (Searchable searchable : searchEngine.search("апельсин")) {
             if (searchable != null) {
                 System.out.println(searchable);
             }
@@ -114,7 +113,7 @@ public class App {
             }
         }
 
-        for (Object searchable: searchEngine.search("рубашка")) {
+        for (Object searchable : searchEngine.search("рубашка")) {
             if (searchable != null) {
                 System.out.println(searchable);
             }

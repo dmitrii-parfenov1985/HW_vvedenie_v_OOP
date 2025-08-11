@@ -45,7 +45,7 @@ public final class Article implements Searchable {
     }
 
     public boolean equals(Object o) {
-        if(!(o instanceof Article article)) return false;
+        if (!(o instanceof Article article)) return false;
 
         return Objects.equals(title, article.title);
     }

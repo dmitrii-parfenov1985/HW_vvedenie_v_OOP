@@ -1,6 +1,13 @@
 package org.skypro.skyshop.search;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 
 
 public class SearchEngine implements Comparator {
@@ -55,7 +62,7 @@ public class SearchEngine implements Comparator {
         List<Searchable> result = new ArrayList<>();
         while (iterator.hasNext()) {
             Searchable element = iterator.next();
-            if (element != null && element.getSearchTerm().contains(search)){
+            if (element != null && element.getSearchTerm().contains(search)) {
                 iterator.remove();
                 result.add(element);
             }

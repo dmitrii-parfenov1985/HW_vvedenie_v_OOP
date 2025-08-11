@@ -17,7 +17,6 @@ public class DiscountedProduct extends Product {
         }
     }
 
-
     @Override
     public int getPrice() {
         return basePrice - discount;
