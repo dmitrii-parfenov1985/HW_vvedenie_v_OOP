@@ -20,7 +20,6 @@ public class ProductBasket {
         currentValue.add(product);
     }
 
-    // переписать через entrySet
     public int totalPrice() {
         int result = 0;
         for (Map.Entry<String, List<Product>> mapEntry : nameToProduct.entrySet()) {

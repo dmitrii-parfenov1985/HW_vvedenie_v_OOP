@@ -1,6 +1,7 @@
 package org.skypro.skyshop;
 
 import com.sun.source.doctree.SeeTree;
+import com.sun.source.tree.Tree;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.model.article.Article;
 import org.skypro.skyshop.model.product.DiscountedProduct;
@@ -14,11 +15,11 @@ import org.skypro.skyshop.search.Searchable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class App {
 
     public static void main(String[] args) {
-
 
         SimpleProduct grape = new SimpleProduct("виноград", 35);
         SimpleProduct orange = new SimpleProduct("апельсин", 15);
@@ -26,10 +27,7 @@ public class App {
         SimpleProduct apple = new SimpleProduct("яблоко", 30);
         SimpleProduct orange2 = new SimpleProduct("апельсин", 15);
 
-
-
         DiscountedProduct milk = new DiscountedProduct("молоко", 90, 90 * 10 / 100);
-
 
         FixPriceProduct jeans = new FixPriceProduct("джинсы");
         FixPriceProduct trousers = new FixPriceProduct("брюки");
@@ -54,6 +52,7 @@ public class App {
 
         Article articleAboutOrange = new Article("Статья о пользе апельсинов.", "В апельсинах много витамина С");
         Article articleAboutMilk = new Article("Название статьи: Молоко вредно для взрослых людей!", "Нельзя пить молоко!");
+        Article articleAboutGrape = new Article("Статья о винограда : Из винограда делают вино", "Вино бывает белое и красное");
 
         System.out.println(articleAboutOrange.getSearchTerm());
         System.out.println(articleAboutOrange.getContentType());
@@ -63,6 +62,7 @@ public class App {
         System.out.println(orange.getSearchTerm());
         System.out.println(apple.getName());
         System.out.println(articleAboutOrange);
+        System.out.println(articleAboutGrape);
 
         SearchEngine searchEngine = new SearchEngine();
         System.out.println("-------------");
@@ -81,7 +81,7 @@ public class App {
         searchEngine.add(articleAboutOrange);
         searchEngine.add(articleAboutMilk);
         System.out.println("-------");
-        Set<String> orangeSearchResult = searchEngine.search("апельсин");
+        TreeSet<Searchable> orangeSearchResult = searchEngine.search("апельсин");
         System.out.println(orangeSearchResult);
         System.out.println("-------");
         System.out.println(searchEngine.delete("апельсин"));
@@ -97,23 +97,23 @@ public class App {
             throw new RuntimeException(e);
         }
 
-        /*for (Map.Entry<String, Searchable> searchable: searchEngine.search("апельсин").equals()) {
+        for (Searchable searchable: searchEngine.search("апельсин")) {
             if (searchable != null) {
                 System.out.println(searchable);
             }
         }
 
-        for (Map.Entry<String, Searchable> searchable : searchEngine.search("молоко").equals()) {
+        for (Searchable searchable : searchEngine.search("молоко")) {
             if (searchable != null) {
                 System.out.println(searchable);
             }
         }
 
-        for (Object searchable: searchEngine.search("рубашка").equals()) {
+        for (Searchable searchable: searchEngine.search("рубашка")) {
             if (searchable != null) {
                 System.out.println(searchable);
             }
-        }*/
+        }
 
 
         SearchEngine searchEngine1 = new SearchEngine();
