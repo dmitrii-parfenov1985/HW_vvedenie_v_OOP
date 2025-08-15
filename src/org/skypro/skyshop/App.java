@@ -90,6 +90,9 @@ public class App {
         System.out.println(searchEngine.delete("брюки"));
         System.out.println(searchEngine.getSearchables());
         System.out.println("--------");
+        System.out.println("начало метода search");
+        searchEngine.search("рубашка");
+        System.out.println("конец метода search");
 
         try {
             searchEngine.findBestMatch("молоко");

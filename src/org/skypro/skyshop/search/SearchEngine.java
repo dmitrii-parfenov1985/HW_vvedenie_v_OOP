@@ -1,13 +1,9 @@
 package org.skypro.skyshop.search;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 
 public class SearchEngine implements Comparator {
@@ -49,12 +45,10 @@ public class SearchEngine implements Comparator {
 
     public TreeSet<Searchable> search(String search) {
         TreeSet<Searchable> result = new TreeSet<>(new MyComparator());
-        for (Searchable searchable : searchables) {
-            if (searchable != null && searchable.getSearchTerm().contains(search)) {
-                result.add(searchable);
-            }
-        }
-        return result;
+        TreeSet<Searchable> searchElements = result.stream()
+                .filter(Predicate.isEqual(search))
+                .collect(Collectors.toCollection(TreeSet::new));
+        return searchElements;
     }
 
     public List<Searchable> delete(String search) {
