@@ -44,10 +44,9 @@ public class SearchEngine implements Comparator {
     }
 
     public TreeSet<Searchable> search(String search) {
-        TreeSet<Searchable> result = new TreeSet<>(new MyComparator());
-        TreeSet<Searchable> searchElements = result.stream()
-                .filter(Predicate.isEqual(search))
-                .collect(Collectors.toCollection(TreeSet::new));
+        TreeSet<Searchable> searchElements = searchables.stream()
+                .filter(searchable -> searchable.getSearchTerm().contains(search))
+                .collect(Collectors.toCollection(()->new TreeSet<>(new MyComparator())));
         return searchElements;
     }
 

@@ -84,14 +84,15 @@ public class App {
         TreeSet<Searchable> orangeSearchResult = searchEngine.search("апельсин");
         System.out.println(orangeSearchResult);
         System.out.println("-------");
-        System.out.println(searchEngine.delete("апельсин"));
+//        System.out.println(searchEngine.delete("апельсин"));
 
-        System.out.println(searchEngine.delete("молоко"));
+//        System.out.println(searchEngine.delete("молоко"));
         System.out.println(searchEngine.delete("брюки"));
         System.out.println(searchEngine.getSearchables());
         System.out.println("--------");
         System.out.println("начало метода search");
-        searchEngine.search("рубашка");
+        System.out.println(searchEngine.search("молоко"));
+        System.out.println(searchEngine.search("банан"));
         System.out.println("конец метода search");
 
         try {
