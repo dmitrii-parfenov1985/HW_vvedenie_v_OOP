@@ -20,13 +20,9 @@ public class ProductBasket {
     }
 
     public int totalPrice() {
-        int result = 0;
-        for (Map.Entry<String, List<Product>> mapEntry : nameToProduct.entrySet()) {
-            for (Product product : mapEntry.getValue()) {
-                result = result + product.getPrice();
-            }
-        }
-        return result;
+        return nameToProduct.values().stream().flatMap(Collection::stream)
+                .mapToInt(Product::getPrice)
+                .sum();
     }
 
     public boolean printBasket() {
