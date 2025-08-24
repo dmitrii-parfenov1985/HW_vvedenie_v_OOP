@@ -36,6 +36,8 @@ public class App {
 
         basket.addProduct(grape);
         basket.addProduct(orange);
+        basket.addProduct(orange);
+        System.out.println(basket.checkBasket("апельсин"));
         basket.addProduct(banana);
         basket.addProduct(apple);
         basket.addProduct(milk);
@@ -94,6 +96,8 @@ public class App {
         System.out.println(searchEngine.search("молоко"));
         System.out.println(searchEngine.search("банан"));
         System.out.println("конец метода search");
+
+
 
         try {
             searchEngine.findBestMatch("молоко");

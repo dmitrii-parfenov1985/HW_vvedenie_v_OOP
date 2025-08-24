@@ -2,10 +2,9 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.model.product.Product;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ProductBasket {
 
@@ -39,11 +38,10 @@ public class ProductBasket {
         return true;
     }
 
-    public boolean checkBasket (String search){
-            if ((search != null) && nameToProduct.containsKey(search)) {
-                System.out.println("Такой продукт уже лежит в корзине");
-                return true;
-            }
-        return false;
+    public Map<String, List<Product>> checkBasket (String search){
+        Map<String, List<Product>> checkStream = nameToProduct.values().stream().flatMap(Collection::stream)
+                .filter(product -> search.equals(product.getName()))
+                .collect(Collectors.groupingBy(Product::getName));
+        return checkStream;
     }
 }
